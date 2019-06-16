@@ -57,6 +57,7 @@ Will be stripped from link addresses on the final HTML."
   :type 'string
   :group 'endless)
 
+;;;###autoload
 (defun ojs-export-to-blog (dont-show)
   "Exports current subtree as jekyll html and copies to blog.
 Posts need very little to work, most information is guessed.
