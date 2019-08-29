@@ -72,6 +72,11 @@ description: Instructions on Upgrading Octopress
   :group 'org-export-jekyll
   :type 'string)
 
+(defcustom org-jekyll-table-of-contents nil
+  "If t, org-jekyll adds a table of contents to the article"
+  :group 'org-export-jekyll
+  :type 'boolean)
+
 (defcustom org-jekyll-use-src-plugin nil
   "If t, org-jekyll exporter eagerly uses plugins instead of
 org-mode's original HTML stuff. For example:
@@ -140,8 +145,9 @@ CONTENTS is the transcoded contents string.  INFO is a plist
 holding export options."
   (concat
    ;; Table of contents.
-   (let ((depth (plist-get info :with-toc)))
-     (when depth (org-html-toc depth info)))
+   (when org-jekyll-table-of-contents
+    (let ((depth (plist-get info :with-toc)))
+      (when depth (org-html-toc depth info))))
    ;; ;; PREVIEW mark on the top of article.
    ;; (unless (equal "true" (plist-get info :jekyll-published))
    ;;   "<span style=\"background: red;\">PREVIEW</span>")
